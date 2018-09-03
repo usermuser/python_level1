@@ -5,9 +5,14 @@
 # и сообщаете об диапазоне допустимых. И просите ввести заного.
 # Допустим пользователь ввел 2, оно подходит, возводим в степень 2, и выводим 4
 
-num = 0
-while num < 0 and num > 10:
-    num = int(input("Please enter a num. 0 < num < 10: "))
+print("Exercise #1. Normal level")
+num = -1
+while num < 0 or num > 10:
+    num = int(input("Please enter number from 0 to 10: "))
+else:
+    print("Entered correct number")
+    num = num**2
+    print("num ** 2 =", num)
 
 
 # Задача-2: Исходные значения двух переменных запросить у пользователя.
@@ -16,7 +21,8 @@ while num < 0 and num > 10:
 # Подсказки:
 # * постарайтесь сделать решение через действия над числами;
 
-a = int(input("Please enter first number a = "))
-b = int(input("Please enter second number b = "))
+print("\n Exercise #2. Normal level")
+a = input("Please enter first variable a = ")
+b = input("Please enter second variable b = ")
 a, b = b, a
 print("a =", a, "b =", b)
