@@ -10,7 +10,7 @@ num = -1
 while num < 0 or num > 10:
     num = int(input("Please enter number from 0 to 10: "))
 else:
-    print("Entered correct number")
+    print("Thank you for entering correct number.")
     num = num**2
     print("num ** 2 =", num)
 
@@ -21,7 +21,7 @@ else:
 # Подсказки:
 # * постарайтесь сделать решение через действия над числами;
 
-print("\n Exercise #2. Normal level")
+print("\nExercise #2. Normal level")
 a = input("Please enter first variable a = ")
 b = input("Please enter second variable b = ")
 a, b = b, a
