@@ -18,18 +18,6 @@ surname = input("Please enter your surname: ")
 age = int(input("Please enter your age: "))
 weight = int(input("Please enter your weight: "))
 
-# if age < 30 and weight > 50 and weight < 120:
-#     print("Вы в хорошем состоянии")
-#
-# if (age > 30 and age < 40 and weight < 50) or (age > 30 and age < 40 and weight > 120):
-#     print("Вам требуется начать вести правильный образ жизни")
-# #
-# if (age > 40 and weight < 50) or (age > 40 and weight > 120):
-#     print("Вам требуется врачебный осмотр")
-#
-# if age < 30 and age > 20 and weight < 40:
-#     print("Вы слишком мало весите, обратитесь к врачу")
-
 if age < 30 and weight > 50 and weight < 120:
     print("Вы в хорошем состоянии")
 
