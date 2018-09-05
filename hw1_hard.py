@@ -11,21 +11,33 @@
 # Пример: Вася Пупкин, 31 год, вес 49 - следует заняться собой
 # Пример: Вася Пупкин, 41 год, вес 121 - следует обратится к врачу!
 # Пример: Вася Пупкин, 41 год, вес 49 - следует обратится к врачу!
-# Пример: Владимир Медведев, 18 лет, вес 33 - Вы слишком мало весите, обратитесь к врачу
+# Пример: Владимир Медведев, 22 лет, вес 33 - Вы слишком мало весите, обратитесь к врачу
 
 name = input("Please enter your name: ")
 surname = input("Please enter your surname: ")
 age = int(input("Please enter your age: "))
 weight = int(input("Please enter your weight: "))
 
+# if age < 30 and weight > 50 and weight < 120:
+#     print("Вы в хорошем состоянии")
+#
+# if (age > 30 and age < 40 and weight < 50) or (age > 30 and age < 40 and weight > 120):
+#     print("Вам требуется начать вести правильный образ жизни")
+# #
+# if (age > 40 and weight < 50) or (age > 40 and weight > 120):
+#     print("Вам требуется врачебный осмотр")
+#
+# if age < 30 and age > 20 and weight < 40:
+#     print("Вы слишком мало весите, обратитесь к врачу")
+
 if age < 30 and weight > 50 and weight < 120:
     print("Вы в хорошем состоянии")
 
-if (age > 30 and age < 40 and weight < 50) or (age > 30 and age < 40 and weight > 120):
+elif (age > 30 and age < 40 and weight < 50) or (age > 30 and age < 40 and weight > 120):
     print("Вам требуется начать вести правильный образ жизни")
 
-if (age > 40 and weight < 50) or (age > 40 and weight > 120):
-    print("Вам требуется врачебный осмотр")
+elif (age > 40 and weight < 50) or (age > 40 and weight > 120):
+    print("Вам требуется врачебный осмотр.")
 
-if age < 30 and age > 20 and weight < 40:
+elif age < 30 and age > 20 and weight < 40:
     print("Вы слишком мало весите, обратитесь к врачу")
