@@ -54,12 +54,19 @@ with open('salary.txt', 'r', encoding='utf-8') as file:
 '''
 
 with open('salary.txt', 'r', encoding='utf-8') as file:
-    dict = {}
-    print('marker')
+    dict1 = {}
+    print('Посчитаем зарплату минус 13%')
     for line in file.readlines():
         key, val = line.strip().split('-')
-        dict[key] = float(val)
-        dict[key] -= dict[key]*0.13
-    print(dict)
+        dict1[key] = float(val)
+        dict1[key] -= dict1[key]*0.13
+    print(dict1, end='\n')
+
+print('Уберем людей получающих зп больше 50000')
+
+filtered_dict = filter(lambda x: x < 50000, dict1.values())
+print(list(filtered_dict))
+
+
 
 
