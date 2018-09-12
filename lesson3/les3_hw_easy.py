@@ -54,9 +54,9 @@ print('\nЗадание - 3.')
 def arg_len(*args):
     biggest = ''
     for i in args:
-        if i > biggest:
+        if len(i) > len(biggest):
             biggest = i
     print(biggest)
     return biggest
 
-arg_len('абв абвгд ноутбук')
+arg_len('абвddddf dsfdfa', 'абвгд', 'ноутбук')
