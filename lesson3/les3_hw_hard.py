@@ -9,7 +9,18 @@
 # функция в качестве аргумента будет принимать атакующего и атакуемого,
 # функция должна получить параметр damage атакующего и отнять это количество
 # health от атакуемого. Функция должна сама работать с словарями и изменять их значения.
- 
+player = {'name': 'Barbaz', 'health': 95, 'damage': 5}
+enemy = {'name': 'Spammer', 'health': 90, 'damage': 7}
+
+print(player, enemy)
+def attack(attacker, victim):
+
+    dmg = attacker['damage']
+    health = victim['health']
+    victim['health'] -= dmg
+
+attack(player, enemy)
+print(player, enemy)
  
 # Задание - 2
 # Давайте усложним предыдущее задание, измените сущности, добавив новый параметр - armor = 1.2
