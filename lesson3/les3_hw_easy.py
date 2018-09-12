@@ -16,7 +16,7 @@ def my_func(name, age, city):
 
 
 name = input('Введите свое имя: ')
-age = input('Введите свой возраст: ')
+age = int(input('Введите свой возраст: '))
 city = input('Введите свой город: ')
 
 my_func(name, age, city)
@@ -51,4 +51,12 @@ get_max(3, 1, 2)
 
 print('\nЗадание - 3.')
 
-def
+def arg_len(*args):
+    biggest = ''
+    for i in args:
+        if i > biggest:
+            biggest = i
+    print(biggest)
+    return biggest
+
+arg_len('абв абвгд ноутбук')
