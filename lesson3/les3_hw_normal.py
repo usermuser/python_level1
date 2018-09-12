@@ -30,24 +30,46 @@ write = write_dict_to_file('salary.txt', **person_card)
 # Подумайте вспоминая урок, как это можно сделать максимально кратко,
 # используя возможности языка Python.
 
-with open('salary.txt', 'r', encoding='utf-8') as file:
-    dict1 = {}
-    print('Посчитаем зарплату минус 13%')
-    for line in file.readlines():
-        key, val = line.strip().split('-')
-        dict1[key] = float(val)
-        dict1[key] -= dict1[key]*0.13
-    print(dict1, end='\n')
+# Напишем функцию которая открывает указанный файл и читает его
+# и вычитает заданное количество процентов
+# но перед этим все значения преобразуем в float
+# если у Владимира 87.0 значит функция считает правильно
+def salary_after_tax(filename, percent):
+    with open(filename, 'r', encoding='utf-8') as file:
+        dict1 = {}
+        print('Посчитаем зарплату минус 13%')
+        for line in file.readlines():
+            key, val = line.strip().split('-')
+            dict1[key] = float(val)
+            dict1[key] -= dict1[key] * (percent / 100)
+        print(dict1, end='\n')
+    return dict1
+
+dict1 = salary_after_tax('salary.txt', 13)
+
+
+# Напишем функцию которая фильтрует словарь по заданному значению
+
+def filt_dict_values_by_setpoint(setpoint=50, **kwargs):
+    temp_dict = {}                    # сюда положим отфильтрованное
+    for k, v in kwargs.items():
+        if v < setpoint:
+            temp_dict[k] = v
+    print(temp_dict)
+    return temp_dict
 
 print('\nУберем людей получающих зп больше 50000')
 
-# Напишем функцию которая фильтрует словарь по заданному значению
-def filt_dict_val_by_setpoint(setpoint=50, **kwargs):
-    dct = {}                    # сюда положим отфильтрованное
-    for k,v in kwargs.items():
-        if v < setpoint:
-            dct[k] = v
-    print(dct)
-    return dct
-filt_dict_val_by_setpoint(50000,**dict1)
+filtered_salary = filt_dict_values_by_setpoint(50000,**dict1)
 
+# сделаем имя КАПСОМ
+def caps_dict(**kwargs):
+    temp_dict = {}
+    for k,v in kwargs.items():
+        k = k.upper()
+        temp_dict[k] = v
+    print(temp_dict)
+    return  temp_dict
+
+print('\nИмя должно быть в верхнем регистре:')
+caps_dict(**filtered_salary)
