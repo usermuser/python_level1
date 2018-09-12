@@ -9,13 +9,13 @@ print('\nЗадание - 1.')
 
 
 def my_func(name, age, city):
-    # output = name.title() + ', ', age, 'проживает в городе', city
     output = '{}, {} года(а), проживает в городе {}'.format(name, age, city)
     print(output)
     return output
 
 
 name = input('Введите свое имя: ')
+name = name.title()
 age = int(input('Введите свой возраст: '))
 city = input('Введите свой город: ')
 
@@ -35,11 +35,13 @@ def get_max(a, b, c):
     if c > maxnum:
         maxnum = c
 
-    print('maxnum =', maxnum)
+    print('Наибольшее из {},{},{} ='.format(a, b, c), maxnum)
     return maxnum
 
 
+# Проверим все комбинации
 get_max(1, 2, 3)
+get_max(1, 3, 2)
 get_max(2, 3, 1)
 get_max(3, 2, 1)
 get_max(3, 1, 2)
@@ -49,14 +51,26 @@ get_max(3, 1, 2)
 # верните самую длинную строку из полученных аргументов
 
 
-print('\nЗадание - 3.')
+print('\nЗадание - 3-1. Количество строковых аргументов неизвестно')
+
 
 def arg_len(*args):
-    biggest = ''
-    for i in args:
-        if len(i) > len(biggest):
-            biggest = i
-    print(biggest)
-    return biggest
+    biggest_word = ''
+    for word in args:
+        if len(word) > len(biggest_word):
+            biggest_word = word
+    print(biggest_word)
+    return biggest_word
 
-arg_len('абвddddf dsfdfa', 'абвгд', 'ноутбук')
+
+biggest = arg_len('абвddddf dsfdfa', 'абвгд', 'ноутбук')
+print(biggest)
+
+print('\nЗадание - 3-2. Количество известно')
+
+# передадим известное количество аргументов в виде списка
+# потренируемся разворачивать список
+
+words = ['ppapapa', 'fooo', 'bar', 'bazzzzzzzzzzzzz']
+lst = arg_len(*words)
+print(lst)
