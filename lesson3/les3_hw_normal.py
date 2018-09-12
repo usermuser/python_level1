@@ -8,16 +8,18 @@
 names = ['Денис', 'Сергей', 'Владимир', 'Гвидо']
 salaries = ['100500.00', '15000', '100', '654321.321']
 
+# создадим словарь c зарплатами
 person_card = dict(zip(names, salaries))
-print('person card =', person_card)
 
-with open('salary.txt', 'w', encoding='utf-8') as file:
-    for name, salary in person_card.items():
-        print(name, salary)
-        file.write('{} - {}\n'.format(name, salary))
+# Напишем функцию открытия указанного файла и записи в него словаря любой длины
+def write_dict_to_file(file, **kwargs):
+    with open(file, 'w', encoding='utf-8') as file:
+        for name, salary in kwargs.items():
+            # print(name, salary)
+            file.write('{} - {}\n'.format(name, salary))
 
-print('Конец первой части. Файл записан.')
 
+write = write_dict_to_file('salary.txt', **person_card)
 
 # После чего прочитайте файл, выведите построчно имя и зарплату минус 13% (налоги ведь),
 # Есть условие, не отображать людей получающих более зарплату 500000, как именно
@@ -28,31 +30,6 @@ print('Конец первой части. Файл записан.')
 # Подумайте вспоминая урок, как это можно сделать максимально кратко,
 # используя возможности языка Python.
 
-# def lst_to_dict(*args):
-#     dict={}
-#     print('*args', args)
-#     for item in args:
-#         item = item.split('-')
-#         dict.update({item[0]:item[1].strip()})
-#     return dict
-#
-# print('\nВторая часть задачи\n')
-# with open('salary.txt', 'r', encoding='utf-8') as file:
-#     data_list = file.readlines()
-#     print('data_list = ', data_list)
-#     result = map(lst_to_dict, data_list)
-#     result_list = list(result)
-#     print(result_list)
-#     print('\nКонец второй части.')
-'''
-with open('salary.txt', 'r', encoding='utf-8') as file:
-    dict = {}
-    print('marker')
-    for line in file.readlines():
-        key, val = line.strip().split('-')
-        dict[key] = val
-'''
-
 with open('salary.txt', 'r', encoding='utf-8') as file:
     dict1 = {}
     print('Посчитаем зарплату минус 13%')
@@ -62,11 +39,15 @@ with open('salary.txt', 'r', encoding='utf-8') as file:
         dict1[key] -= dict1[key]*0.13
     print(dict1, end='\n')
 
-print('Уберем людей получающих зп больше 50000')
+print('\nУберем людей получающих зп больше 50000')
 
-filtered_dict = filter(lambda x: x < 50000, dict1.values())
-print(list(filtered_dict))
-
-
-
+# Напишем функцию которая фильтрует словарь по заданному значению
+def filt_dict_val_by_setpoint(setpoint=50, **kwargs):
+    dct = {}                    # сюда положим отфильтрованное
+    for k,v in kwargs.items():
+        if v < setpoint:
+            dct[k] = v
+    print(dct)
+    return dct
+filt_dict_val_by_setpoint(50000,**dict1)
 
