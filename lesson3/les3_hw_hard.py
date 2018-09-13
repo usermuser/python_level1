@@ -16,13 +16,23 @@ print('player = ', player)
 print('enemy = ', enemy)
 
 def attack(attacker, victim):
-    print('Игрок ', attacker['name'], 'атаковал с атакой', attacker['damage'], victim['name'], 'хп было', victim['health'])
-    dmg = attacker['damage']
+    # ~ print('Игрок ', attacker['name'], 'атаковал', victim['name'], 'с атакой', attacker['damage'], 'хп было', victim['health'])
+    dmg = dmg_calc(attacker['damage'], victim['armor'])
+    # ~ print("стало {} - {} = ".format(victim['health'], dmg ), end='')
     victim['health'] -= dmg
-    print('\nстало', victim['health'])
+    print('хп стало ', victim['health'])
+    
+def dmg_calc(damage=1, armor=1.2):
+    # dealt_dmg = damage / armor
+    dealt_dmg = damage / armor
+    return dealt_dmg
 
 attack(player, enemy)
- 
+
+def ff(**kwargs):
+    filename = kwargs['name']
+    with open(filename, 'w', encoding ='utf-8') as file:
+        filename.write()
 # Задание - 2
 # Давайте усложним предыдущее задание, измените сущности, добавив новый параметр - armor = 1.2
 # Теперь надо добавить функцию, которая будет вычислять и возвращать полученный урон по формуле damage / armor
