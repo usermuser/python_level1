@@ -1,4 +1,4 @@
-name - Spammer
+damage - 2
 armor - 1.2
-damage - 7
-health - 90
+name - Spammer
+health - 30

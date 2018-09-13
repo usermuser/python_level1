@@ -23,8 +23,7 @@ salaries = ['100500.00', '15000', '100', '654321.321']
 def write_dict_to_file(file, **kwargs):
     with open(file, 'w', encoding='utf-8') as file:
         for name, salary in kwargs.items():
-            # print(name, salary)
-            file.write('{} - {}\n'.format(name, salary))
+            file.write('{} - {}\n'.format(name, salary))              # запишем имена и зарплаты в файл построчно
 
 
 # открывает указанный файл и читает его
@@ -33,30 +32,28 @@ def write_dict_to_file(file, **kwargs):
 # если у Владимира 87.0 значит функция считает правильно
 def tax_cutter(filename, percent):
     with open(filename, 'r', encoding='utf-8') as file:
-        temp_dict = {}
-        for line in file.readlines():
-            key, val = line.strip().split('-')
-            temp_dict[key] = float(val)
-            temp_dict[key] -= temp_dict[key] * (percent / 100)
-        # print(temp_dict, end='\n')
-    return temp_dict
+        temp_dict = {}                                         # создадим новый словарь, с которым будем работать
+        for line in file.readlines():                          # прочитаем построчно файл
+            key, val = line.strip().split('-')                 # удалим ненужные спецсимволы (\n)
+            temp_dict[key] = float(val)                        # добавляем в словарь, в формате float
+            temp_dict[key] -= temp_dict[key] * (percent / 100) # вычитаем налог
+    return temp_dict                                           # вернем полученный словарь
 
 
 # фильтрует словарь по заданному значению
 def filt_dict_values_by_setpoint(setpoint=50, **kwargs):
-    temp_dict = {}                    # сюда положим отфильтрованное
-    for k, v in kwargs.items():
-        if v < setpoint:
-            temp_dict[k] = v
-    # print(temp_dict)
-    return temp_dict
+    temp_dict = {}                                          # создадим новый словарь, с которым будем работать
+    for k, v in kwargs.items():                             # получим имена и зарплаты
+        if v < setpoint:                                    # если зп < заданной (setpoint)
+            temp_dict[k] = v                                # добавим в новый словарь
+    return temp_dict                                        # вернем полученный фильтрованый словарь
 
 
 # делает имя КАПСОМ
 def capser(**kwargs):
     temp_dict = {}
     for k,v in kwargs.items():
-        k = k.upper()
+        k = k.upper()                                       # upper - все буквы в верхнем регистре
         temp_dict[k] = v
     print(temp_dict)
     return temp_dict

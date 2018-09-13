@@ -9,13 +9,14 @@
 # функция в качестве аргумента будет принимать атакующего и атакуемого,
 # функция должна получить параметр damage атакующего и отнять это количество
 # health от атакуемого. Функция должна сама работать с словарями и изменять их значения.
-player = {'name': 'Barbaz', 'health': 95, 'damage': 5, 'armor': 1.2}
-enemy = {'name': 'Spammer', 'health': 90, 'damage': 7, 'armor': 1.2}
+player = {'name': 'Barbaz', 'health': 95, 'damage': 4, 'armor': 2.2}
+enemy = {'name': 'Spammer', 'health': 30, 'damage': 2, 'armor': 1.2}
+
 
 # вычисляет остаток хп после атаки
 # если хп после атаки стало <= 0 то функция вернет 1 (exit = 1), иначе 0 (exit = 0)
 def attack(attacker, victim):
-    print('\nИгрок ', attacker['name'], 'атаковал', victim['name'], 'с атакой', attacker['damage'], 'хп было',
+    print('\nИгрок ', attacker['name'], 'атаковал', victim['name'], 'с атакой', attacker['damage'], ', хп было',
           victim['health'])
     dmg = dmg_calc(attacker['damage'], victim['armor'])
     victim['health'] -= dmg
@@ -28,11 +29,13 @@ def attack(attacker, victim):
         print('с учетом брони хп стало ', victim['health'])
         return 0
 
+
 # вычисляет наносимый урон
 def dmg_calc(damage=1, armor=1.2):
     # dealt_dmg = damage / armor
     dealt_dmg = damage / armor
     return dealt_dmg
+
 
 # сохраняет характеристики персонажа в файл
 def save_to_file(**kwargs):
@@ -42,6 +45,7 @@ def save_to_file(**kwargs):
     with open(filename, 'w', encoding='utf-8') as file:
         for key, value in kwargs.items():
             file.write('{} - {}\n'.format(key, value))
+
 
 # считывает характеристики из файла
 def readfile(**kwargs):
@@ -59,14 +63,15 @@ save_to_file(**enemy)
 player = readfile(**player)
 enemy = readfile(**enemy)
 
+
 # главный цикл программы
 def fight(player, enemy):
-    turn = 1             # 1 - ходит player, 2 - ходит enemy
-    exit = 0             # условие выхода из программы
+    turn = 1  # 1 - ходит player, 2 - ходит enemy
+    exit = 0  # условие выхода из программы (exit = 1 выходим)
     while not exit:
         if turn == 1:
             exit = attack(player, enemy)  # если после атаки хп стало <= 0, то бой окончен, выходим (exit = 1)
-            turn = 2                      # переход хода
+            turn = 2  # переход хода
         else:
             exit = attack(enemy, player)
             turn = 1
