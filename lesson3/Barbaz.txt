@@ -1,0 +1,4 @@
+damage - 4
+armor - 2.2
+name - Barbaz
+health - 95
