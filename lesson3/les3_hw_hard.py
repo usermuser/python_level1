@@ -32,7 +32,11 @@ attack(player, enemy)
 def ff(**kwargs):
     filename = kwargs['name']
     with open(filename, 'w', encoding ='utf-8') as file:
-        filename.write()
+        for k, v in kwargs.items():
+            print(k,v)
+            
+        
+ff(**player)
 # Задание - 2
 # Давайте усложним предыдущее задание, измените сущности, добавив новый параметр - armor = 1.2
 # Теперь надо добавить функцию, которая будет вычислять и возвращать полученный урон по формуле damage / armor
