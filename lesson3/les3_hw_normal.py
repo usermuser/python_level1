@@ -46,7 +46,7 @@ def filt_dict_values_by_setpoint(setpoint=50, **kwargs):
     for k, v in kwargs.items():                             # получим имена и зарплаты
         if v < setpoint:                                    # если зп < заданной (setpoint)
             temp_dict[k] = v                                # добавим в новый словарь
-    return temp_dict                                        # вернем полученный фильтрованый словарь
+    return temp_dict                                        # вернем полученный фильтрованный словарь
 
 
 # делает имя КАПСОМ
