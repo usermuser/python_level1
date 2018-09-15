@@ -35,8 +35,8 @@ import random
 
 count = 10
 # list3 = [random.randint(-100, 100) for i in range(count)]
-list3 = [-12, -8, -5, -4, -3, -2, -1, 0 , 1, 2, 3, 4, 5, 8, 12]
+list3 = [-24, -12, -8,  -4, -3, -1, 0 , 1, 3, 4, 8, 12, 24]
 print('исходный список, заполненный произвольными числами\n', list3)
 
 result3 = [i for i in list3 if i%3 == 0 and i > 0 and i%4 == 0]
-print('\n положительные числа кратные 3 \n', result3)
+print('\n положительные числа кратные 3 и кратные 4 \n', result3)
