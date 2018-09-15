@@ -11,25 +11,44 @@
 #  (спецсимвол, заглавная буква, .net), te_4_st@test.com - верно указан.
 import re
 
-# name = input('Введите Имя и Фамилию с заглавной буквы.')
-user_info = 'Василий Пупкин'
-name, surname = user_info.split()
-print('name:', name, 'surname:', surname)
+user_input = input('Введите Имя и Фамилию с заглавной буквы.')
+# user_input = 'Василий Пупкин'
+name, surname = user_input.split()
+# print('name:', name, 'surname:', surname)
 
-name_pattern = '^([А-Я][а-я]+)\ [А-Я][а-я]+$'
+# name_pattern = '^([А-Я][а-я]+)\ [А-Я][а-я]+$'
+pattern = '^[А-Я][а-я]+'
+
+def check_user_input(pattern, input):
+    search_result = re.search(pattern, input)
+    # print(search_result)
+    if search_result:
+        return True
+    else:
+        return False
+
+
+name_ok = check_user_input(name, pattern)
+surname_ok = check_user_input(surname, pattern)
+
+if name_ok and surname_ok:
+    print(name, surname, ' - Данные введены верно')
+elif not name_ok and surname_ok:
+    print(name, surname, ' - Неверно указано имя')
+elif name_ok and not surname_ok:
+    print(name, surname, ' - Неверно указана фамилия')
+
 
 # email = input('Введите email.')
-# email_pattern = ''
+email = 'te_4_st@test.com'
+bad_email = 'te$T@test.net'
+email_pattern = '^[(a-z0-9\_)]+\@[a-z0-9]+\.(ru|com|org)$'
 
-search_result = re.search(name_pattern, name)
-if search_result:
-    print('Имя и Фамилия введены правильно')
-else:
-    print('')
-print(re.search(name_pattern, name))
-print(re.match(name_pattern, name))
+email_result = check_user_input(email_pattern, email)
+print(email_result)
 
-
+email_result = check_user_input(email_pattern, bad_email)
+print(email_result)
 
 # Задача - 2:
 # Вам дан текст:
