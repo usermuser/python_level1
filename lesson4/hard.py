@@ -42,7 +42,6 @@ def withdraw_money(person, count):
 
 
 def process_user_choice(choice, person):
-    # print('user choice is >>', choice)
     if choice == 1:
         print(check_account(person))
     elif choice == 2:
@@ -62,11 +61,9 @@ def start(person, pin_code):
             if choice == 3:
                 break
             else:
-                # print('choice is: ', choice)
                 process_user_choice(choice, person)
     else:
         print('Номер карты или пин код введены не верно!')
-        # check_card_number_and_pin(card_number, pin_code)
 
 
 def check_user_input():
@@ -79,10 +76,6 @@ def check_user_input():
 
         except ValueError:
             print('Вы допустили ошибку во время ввода, введите номер карты и пин код через пробел')
-
-        except Exception:
-            print('Неизвестная ошибка, введите номер карты и пин код через пробел')
-
         except UnboundLocalError:
             print('Неизвестная ошибка, введите номер карты и пин код через пробел')
         except Exception as e:
