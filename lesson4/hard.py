@@ -16,18 +16,6 @@ person3 = {'card': 4276123465440002, 'pin': 9092, 'money': 300.90}
 # bad input 4276123465440002 9091
 bank = [person1, person2, person3]
 
-# def check_card_number_and_pin(card_number, pin_code):
-#     card_number = str(card_number)
-#     pin_code = str(pin_code)
-#     card_ok = re.search(card_pattern, card_number)
-#     pin_ok = re.search(pin_pattern, pin_code)
-#     if card_ok and not pin_ok:
-#         print('Пин введен не верно')
-#     elif not card_ok and pin_ok:
-#         print('Номер карты введен не верно')
-#     elif not card_ok and not pin_ok:
-#         print('Номер карты и пин введены не верно')
-
 
 def get_person_by_card(card_number):
     for person in bank:
@@ -62,17 +50,7 @@ def process_user_choice(choice, person):
         print(withdraw_money(person, count))
 
 
-def start():
-    try:
-        card_number, pin_code = input('Введите номер карты и пин код через пробел:').split()
-    except ValueError:
-        print('Вы допустили ошибку во время ввода, введите номер карты и пин код через пробел')
-    except Exception:
-        print('Неизвестная ошибка, введите номер карты и пин код через пробел')
-    # print(card_number, pin_code)
-    card_number = int(card_number)
-    pin_code = int(pin_code)
-    person = get_person_by_card(card_number)
+def start(person, pin_code):
     if person and is_pin_valid(person, pin_code):
         while True:
             choice = int(input('Выберите пункт:\n'
@@ -91,7 +69,26 @@ def start():
         # check_card_number_and_pin(card_number, pin_code)
 
 
+def check_user_input():
+    while True:
+        try:
+            card_number, pin_code = input('Введите номер карты и пин код через пробел:').split()
+            card_number = int(card_number)
+            pin_code = int(pin_code)
+            person = get_person_by_card(card_number)
+
+        except ValueError:
+            print('Вы допустили ошибку во время ввода, введите номер карты и пин код через пробел')
+
+        except Exception:
+            print('Неизвестная ошибка, введите номер карты и пин код через пробел')
+
+        except UnboundLocalError:
+            print('Неизвестная ошибка, введите номер карты и пин код через пробел')
+        except Exception as e:
+            print(e.__class__)
+        else:
+            start(person, pin_code)
 
 
-
-start()
+check_user_input()
