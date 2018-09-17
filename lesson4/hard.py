@@ -15,8 +15,19 @@ person3 = {'card': 4276123465440002, 'pin': 9092, 'money': 300.90}
 # person3 = 4276123465440002 9092
 # bad input 4276123465440002 9091
 bank = [person1, person2, person3]
-card_pattern = r'[0-9]{16}'
-pin_pattern = r'[0-9]{4}'
+
+# def check_card_number_and_pin(card_number, pin_code):
+#     card_number = str(card_number)
+#     pin_code = str(pin_code)
+#     card_ok = re.search(card_pattern, card_number)
+#     pin_ok = re.search(pin_pattern, pin_code)
+#     if card_ok and not pin_ok:
+#         print('Пин введен не верно')
+#     elif not card_ok and pin_ok:
+#         print('Номер карты введен не верно')
+#     elif not card_ok and not pin_ok:
+#         print('Номер карты и пин введены не верно')
+
 
 def get_person_by_card(card_number):
     for person in bank:
@@ -52,7 +63,12 @@ def process_user_choice(choice, person):
 
 
 def start():
-    card_number, pin_code = input('Введите номер карты и пин код через пробел:').split()
+    try:
+        card_number, pin_code = input('Введите номер карты и пин код через пробел:').split()
+    except ValueError:
+        print('Вы допустили ошибку во время ввода, введите номер карты и пин код через пробел')
+    except Exception:
+        print('Неизвестная ошибка, введите номер карты и пин код через пробел')
     # print(card_number, pin_code)
     card_number = int(card_number)
     pin_code = int(pin_code)
@@ -72,6 +88,10 @@ def start():
                 process_user_choice(choice, person)
     else:
         print('Номер карты или пин код введены не верно!')
+        # check_card_number_and_pin(card_number, pin_code)
+
+
+
 
 
 start()
