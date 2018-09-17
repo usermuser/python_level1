@@ -13,8 +13,10 @@ person3 = {'card': 4276123465440002, 'pin': 9092, 'money': 300.90}
 # person1 =  4276123465440000 9090
 # person2 = 4276123465440001 9091
 # person3 = 4276123465440002 9092
+# bad input 4276123465440002 9091
 bank = [person1, person2, person3]
-
+card_pattern = r'[0-9]{16}'
+pin_pattern = r'[0-9]{4}'
 
 def get_person_by_card(card_number):
     for person in bank:
