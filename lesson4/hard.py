@@ -10,7 +10,9 @@
 person1 = {'card': 4276123465440000, 'pin': 9090, 'money': 100.90}
 person2 = {'card': 4276123465440001, 'pin': 9091, 'money': 200.90}
 person3 = {'card': 4276123465440002, 'pin': 9092, 'money': 300.90}
-
+# person1 =  4276123465440000 9090
+# person2 = 4276123465440001 9091
+# person3 = 4276123465440002 9092
 bank = [person1, person2, person3]
 
 
@@ -30,25 +32,26 @@ def check_account(person):
     return round(person['money'], 2)
 
 
-def withdraw_money(person, money):
-    if person['money'] - money == 0:
-        person['money'] -= money
-        return 'Вы сняли {} рублей.'.format(money)
+def withdraw_money(person, count):
+    if person['money'] - count >= 0:
+        person['money'] -= count
+        return 'Вы сняли {} рублей.'.format(count)
     else:
         return 'На вашем счету недостаточно средств!'
 
 
 def process_user_choice(choice, person):
-    if choice == '1':
+    # print('user choice is >>', choice)
+    if choice == 1:
         print(check_account(person))
-    elif choice == '2':
+    elif choice == 2:
         count = float(input('Сумма к снятию:'))
         print(withdraw_money(person, count))
 
 
 def start():
     card_number, pin_code = input('Введите номер карты и пин код через пробел:').split()
-
+    # print(card_number, pin_code)
     card_number = int(card_number)
     pin_code = int(pin_code)
     person = get_person_by_card(card_number)
@@ -62,7 +65,9 @@ def start():
                                'Ваш выбор:'))
             if choice == 3:
                 break
-            process_user_choice(choice, person)
+            else:
+                # print('choice is: ', choice)
+                process_user_choice(choice, person)
     else:
         print('Номер карты или пин код введены не верно!')
 
