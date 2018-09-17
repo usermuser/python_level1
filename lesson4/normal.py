@@ -13,24 +13,12 @@ import re
 
 # Так как язык не указан, значит разрешено вводить Василий Пупкин или Vasiliy Pupkin
 user_input = input('Введите имя и фамилию с заглавной буквы:')
-# user_input = 'Василий Пупкин'
 name, surname = user_input.split()
-# print('name:', name, 'surname:', surname)
 
-# name_pattern = '^[А-Я][а-я]+$|^[A-Z][a-z]+$'
 pattern = '^[А-Я][а-я]+$|^[A-Z][a-z]+$'
 
-def check_user_input(pattern, input):
-    search_result = re.search(pattern, input)
-    # print(search_result)
-    if search_result:
-        return True
-    else:
-        return False
-
-
-name_ok = check_user_input(pattern, name)
-surname_ok = check_user_input(pattern, surname)
+name_ok = re.search(pattern, name)
+surname_ok = re.search(pattern, surname)
 
 if name_ok and surname_ok:
     print(name, surname, ' - Данные введены верно')
@@ -41,25 +29,47 @@ elif name_ok and not surname_ok:
 elif not name_ok and not surname_ok:
     print(name, surname, ' - Неверно указаны имя и фамилия')
 
+print('\nПроверка email.')
+email = input('Введите email: ')
+# email = 'te_4_st@test.com'
+# email = 'te$T@test.net'
 
-print('\nПроверка email')
-# email = input('Введите email.')
-mail = 'te_4_st@test.com'
-email = 'te$T@test.net'
-old_email_pattern = '^[(a-z0-9\_)]+\@[a-z0-9]+\.(ru|com|org)$'
-email_pattern = '^([a-z0-9\_]+)\@[a-z0-9]+\.(ru|com|org|рф)$'
+# создадим словарь, который хранит все регулярные выражения
+patterns = {'email_pattern': '^([a-z0-9\_]+)\@[a-z0-9]+\.(ru|com|org|рф)$',
+            'caps_pattern': '[A-ZА-Я]',
+            'dotnet_pattern': '(.net)$',
+            'special_symbol_pattern': '[\,\?\!\#\$\%\^\&\*]'}
 
+# создадим функцию, которая проверит где именно ошибка
+# данная функция позволяет добавить проверки при необходимости
+# не изменяя базовую логику программы
+def check_bad_email(**kwargs):
+    result = ''
 
-email_result = re.search(email_pattern, email)
-print(email_result)
-if email_result:
-    print(email_result.group(1))
-    print(email_result.group(2))
+    dotnet_pattern = kwargs['dotnet_pattern']
+    caps_pattern = kwargs['caps_pattern']
+    special_symbol_pattern = kwargs['special_symbol_pattern']
+
+    dotnet = re.search(dotnet_pattern, email)
+    caps = re.search(caps_pattern, email)
+    special_symbol = re.search(special_symbol_pattern, email)
+
+    if special_symbol:
+        result += '- спецсимволы недопустимы\n'
+    if dotnet:
+        result += '- .net не допустимо\n'
+    if caps:
+        result += '- заглавные буквы недопустимы\n'
+    print('Введен недопустимый email: ', email)
+    print(result)
+
+# сначала проверим, что введенный email правильный
+basic_email_check_ok = re.search(patterns['email_pattern'], email)
+
+if basic_email_check_ok:
+    print(email, ' - указан верно')
 else:
-    if
-
-# email_result = check_user_input(email_pattern, bad_email)
-# print(email_result)
+    check_bad_email(**patterns)
 
 # Задача - 2:
 # Вам дан текст:
