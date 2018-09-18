@@ -1,4 +1,5 @@
 import os, sys
+import time
 # Задача-1:
 # Напишите скрипт, создающий директории dir_1 - dir_9 в папке,
 # из которой запущен данный скрипт.
@@ -7,30 +8,49 @@ import os, sys
 # print(os.listdir())
 
 # os.mkdir(path, mode)
-# try:
-#     os.mkdir('dirname')
-# except FileExistsError:
-#     print('dirname exists')
+
+dirname_prefix = 'dir_'
+
+# с помощью генератора списков создадим список имен директорий, которые нужно создать
+dirs_to_create = [dirname_prefix + str(i) for i in range(1,10)]
+print('Директории с этими именами мы будем создавать:', dirs_to_create)
+
+def create_dirs(*args):
+    for dir in args:
+        try:
+            os.mkdir(dir)
+        except FileExistsError:
+            print('Директория с именем {} уже существует'.format(dir))
+
+def remove_dirs(*args):
+    for dir in args:
+        try:
+            os.rmdir(dir)
+        except OSError:
+            print('Директория с именем {} не пустая'.format(dir))
 
 
 def show_dirs():
     dirs_list = []
     for item in os.scandir():
         if item.is_dir():
-            # print(item.name)
             dirs_list.append(item.name)
+            dirs_list.sort()
     return dirs_list
 
+print('\nДанный скрипт запущен из директории:\n', os.getcwd())
 
-print('Данный скрипт запущен из директории:\n', os.getcwd())
-# print('\nСписок директорий в текущей директории:\n')
+print('\nСписок директорий в текущей директории ДО создания наших директорий:\n', show_dirs())
 
-dirs_lst = show_dirs()
-print('\nСписок директорий в текущей директории\n', dirs_lst)
-try:
-    os.rmdir()
-except OSError:
-    print('Директория не пустая')
+create_dirs(*dirs_to_create)
+
+print('\nСписок директорий в текущей директории ПОСЛЕ создания наших директорий:\n', show_dirs())
+
+
+# try:
+#     os.rmdir(os.getcwd)
+# except OSError:
+#     print('Директория не пустая')
 # def remove_dirs(*args):
 #     for dir in args:
 #         print(dir)
