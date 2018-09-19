@@ -41,6 +41,7 @@ def show_dirs():
         if item.is_dir():
             dirs_list.append(item.name)
             dirs_list.sort()
+    # print(dirs_list)
     return dirs_list
 
 
@@ -59,21 +60,8 @@ remove_dirs(*dirs_to_remove)  # пытаемся удалить пустые д�
 # Задача-2:
 # Напишите скрипт, отображающий папки текущей директории.
 print('\nЗадача-2.')
-
-def show_dirs():
-    dirs_list = []
-    for item in os.scandir():
-        if item.is_dir():
-            dirs_list.append(item.name)
-            dirs_list.sort()
-    print(dirs_list)
-
 print('Текущая директория:', os.getcwd())
-print('Список папок в текущей директории:')
-show_dirs()
-
-
-
+print('Список папок в текущей директории:', show_dirs())
 
 
 # print(os.listdir())
