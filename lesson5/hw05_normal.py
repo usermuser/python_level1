@@ -18,7 +18,8 @@ import lesson5.hw05_easy as lib
 # оформленные в виде соответствующих функций,
 # и импортированные в данный файл из easy.py
 print('Вы находитесь в директории', os.getcwd())
-lib.create_dirs('2')
+
+
 def start():
     while True:
         choice = int(input('\nВыберите пункт:\n'
@@ -34,17 +35,19 @@ def start():
         else:
             process_user_choice(choice)
 
+
 def process_user_choice(choice):
     if choice == 1:
         print('Доступные папки\n', lib.show_dirs())
         dir = input('\nВведите название папки: ')
         try:
             os.chdir(dir)
+            print('\nПерешел')
         except FileNotFoundError:
             print('\nТакой папки не существует\n')
 
     elif choice == 2:
-        if not lib.show_dirs_and_files(): # если функция вернула пустой список файлов и папок
+        if not lib.show_dirs_and_files():  # если функция вернула пустой список файлов и папок
             print('В этой папке пусто')
         else:
             print(lib.show_dirs_and_files())
@@ -52,12 +55,12 @@ def process_user_choice(choice):
     elif choice == 3:
         dir = input('\nВведите название папки: ')
         lib.remove_dirs(dir)
+        print('Папка {} успешно удалена'.format(dir))
 
     elif choice == 4:
         dir = input('\nВведите название папки: ')
         lib.create_dirs(dir)
         print('Папка {} создана'.format(dir))
 
+
 start()
-# def change_dir(dirname):
-#     os.chdir('1')
