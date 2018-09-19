@@ -71,8 +71,3 @@ if __name__ == '__main__':
     print('\nЗадача-2.')
     print('Текущая директория:', os.getcwd())
     print('Список папок в текущей директории:', show_dirs())
-
-# print(os.listdir())
-
-# for path in sys.path:
-#     print(path)
