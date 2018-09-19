@@ -12,7 +12,6 @@ dirname_prefix = 'dir_'
 dirs_to_create = [dirname_prefix + str(i) for i in range(1, 10)]
 
 
-
 def create_dirs(*args):
     for dir in args:
         try:
@@ -21,7 +20,7 @@ def create_dirs(*args):
             print('Директория с именем {} уже существует'.format(dir))
 
 
-def remove_dirs(*args):
+def remove_dirs(*args):  # папки на удаление можно передавать списком
     removed_dirs = []
     for dir in args:
         try:
@@ -34,7 +33,6 @@ def remove_dirs(*args):
     # список удаленных директорий будем хранить в removed_dirs на всякий случай
     removed_dirs.sort()
 
-
 def show_dirs():
     dirs_list = []
     for item in os.scandir():
@@ -44,15 +42,16 @@ def show_dirs():
     # print(dirs_list)
     return dirs_list
 
-def show_dirs_and_files(): # эту функцию создал для следующего задания
+
+def show_dirs_and_files():  # эту функцию создал для следующего задания
     dirs_list = []
     for item in os.scandir():
         dirs_list.append(item.name)
         dirs_list.sort()
     return dirs_list
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
     print('\nЗадача-1.')
     print('Директории с этими именами мы будем создавать:', dirs_to_create)
     print('\nДанный скрипт запущен из директории:\n', os.getcwd())
@@ -72,7 +71,6 @@ if __name__ == '__main__':
     print('\nЗадача-2.')
     print('Текущая директория:', os.getcwd())
     print('Список папок в текущей директории:', show_dirs())
-
 
 # print(os.listdir())
 
