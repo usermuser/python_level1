@@ -26,10 +26,21 @@ def make_dir():
 def ping():
     print("pong")
 
+'''
+cp <file_name> - создает копию указанного файла
+rm <file_name> - удаляет указанный файл (запросить подтверждение операции)
+cd <full_path or relative_path> - меняет текущую директорию на указанную
+ls - отображение полного пути текущей директории
+'''
+
 do = {
     "help": print_help,
     "mkdir": make_dir,
-    "ping": ping
+    "ping": ping,
+    "cp": pass,
+    "rm": pass,
+    "cd": pass,
+    "ls": pass,
 }
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-import 5_with_args as gb_lib
+import 5_with_args as gblib
 import os
 # Задание-1:
 # Доработайте реализацию программы из примера examples/5_with_args.py,
