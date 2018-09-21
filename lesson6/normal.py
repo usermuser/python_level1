@@ -10,3 +10,13 @@
 # Функция подсчета урона должна быть инкапсулирована
 # Вам надо описать игровой цикл так же через класс.
 # Создайте экземпляры классов, проведите бой. Кто будет атаковать первым оставляю на ваше усмотрение.
+
+class Person():
+    def __init__(self, name, health, damage, armor):
+        self.name = name
+        self.health = health
+        self.damage = damage
+        self.armor = armor
+
+    def attack(self, attacker, victim):
+
