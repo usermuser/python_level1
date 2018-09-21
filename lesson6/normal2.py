@@ -19,17 +19,16 @@ class Person():
         self.damage = damage
         self.armor = armor
 
-
-class Player(Person):
-
-    def calculate_damage(damage, armor):
+    def _calculate_damage(self, damage, armor):
         return damage // armor
 
-    def attack(self, attacker, victim):
-        damage = calculate_damage(attacker.damage, victim.armor)
+    def attack(self, victim):
+        damage = self._calculate_damage(self.damage, victim.armor)
         victim.health -= damage
         print('{} нанес {} урона,'
-              ' у {} осталось {} жизней '.format(attacker.name, damage, victim.name, victim.health))
+              ' у {} осталось {} жизней '.format(self.name, damage, victim.name, victim.health))
+
+class Player(Person):
 
     def battle_cry(self):
         return 'Boom shaka laka!'
@@ -37,10 +36,8 @@ class Player(Person):
 
 class Enemy(Person):
 
-    def calculate_damage(damage, armor):
-        return damage // armor
-
     def battle_cry(self):
+
         return 'Slamma jamma!'
 
 
@@ -48,10 +45,10 @@ def start_game():
     attacker = enemy
     while player.health > 0 and enemy.health > 0:
         if attacker == player:
-            player.attack(player, enemy)
+            player.attack(enemy)
             attacker = enemy
         else:
-            enemy.attack(enemy, player)
+            enemy.attack(player)
             attacker = player
 
     if player.health > 0:
@@ -60,16 +57,7 @@ def start_game():
         print(enemy.name, 'победил!')
 
 
-player = Player()
-player.name = 'Крушила'
-player.health = random.randint(50, 150)
-player.damage = random.randint(5, 15)
-player.armor = random.randint(1, 5)
-
-enemy = Enemy()
-enemy.name = 'Шустрик'
-enemy.health = random.randint(50, 150)
-enemy.damage = random.randint(5, 15)
-enemy.armor = random.randint(1, 5)
+player = Player('Крушила', random.randint(50, 150), random.randint(5, 15), random.randint(1, 5))
+enemy = Enemy('Шустрик', random.randint(50, 150), random.randint(5, 15), random.randint(1, 5))
 
 start_game()
