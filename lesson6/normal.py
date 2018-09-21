@@ -1,3 +1,4 @@
+import random
 # Задача - 1
 # Ранее мы с вами уже писали игру, используя словари в качестве
 # структур данных для нашего игрока и врага, давайте сделаем новую, но уже с ООП
@@ -26,18 +27,26 @@ class Player(Person):
 class Enemy(Person):
     pass
 
+
+def calculate_damage(damage, armor):
+    return damage // armor
+
+
 def attack(attacker, victim):
     damage = calculate_damage(attacker.damage, victim.armor)
     victim.health -= damage
-    print('{}')
+    print('{} нанес {} урона,'
+          ' у {} осталось {} жизней '.format(attacker.name, damage, victim.name, victim.health))
 
-player = ''
-enemy = ''
+
+player = Player('Крушила', random.randint(50,150), random.randint(5,15), random.randint(1,5))
+enemy = Enemy('Шустрик', random.randint(50,150), random.randint(5,15), random.randint(1,5))
 
 
 def start_game():
+    attacker = enemy
     while player.health > 0 and enemy.health > 0:
-        if attacker = player:
+        if attacker == player:
             attack(player, enemy)
             attacker = enemy
         else:
@@ -48,3 +57,6 @@ def start_game():
         print(player.name, 'победил!')
     else:
         print(enemy.name, 'победил!')
+
+
+start_game()
