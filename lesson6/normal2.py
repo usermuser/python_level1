@@ -1,6 +1,4 @@
 import random
-
-
 # Задача - 1
 # Ранее мы с вами уже писали игру, используя словари в качестве
 # структур данных для нашего игрока и врага, давайте сделаем новую, но уже с ООП
@@ -23,43 +21,55 @@ class Person():
 
 
 class Player(Person):
+
+    def calculate_damage(damage, armor):
+        return damage // armor
+
+    def attack(self, attacker, victim):
+        damage = calculate_damage(attacker.damage, victim.armor)
+        victim.health -= damage
+        print('{} нанес {} урона,'
+              ' у {} осталось {} жизней '.format(attacker.name, damage, victim.name, victim.health))
+
     def battle_cry(self):
         return 'Boom shaka laka!'
 
 
 class Enemy(Person):
+
+    def calculate_damage(damage, armor):
+        return damage // armor
+
     def battle_cry(self):
         return 'Slamma jamma!'
-
-
-def calculate_damage(damage, armor):
-    return damage // armor
-
-
-def attack(attacker, victim):
-    damage = calculate_damage(attacker.damage, victim.armor)
-    victim.health -= damage
-    print('{} нанес {} урона,'
-          ' у {} осталось {} жизней '.format(attacker.name, damage, victim.name, victim.health))
 
 
 def start_game():
     attacker = enemy
     while player.health > 0 and enemy.health > 0:
         if attacker == player:
-            attack(player, enemy)
+            player.attack(player, enemy)
             attacker = enemy
         else:
-            attack(enemy, player)
+            enemy.attack(enemy, player)
             attacker = player
 
     if player.health > 0:
         print(player.name, 'с криком {} победил!'.format(player.battle_cry()))
     else:
-        print(enemy.name, 'с криком {} победил!'.format(enemy.battle_cry()))
+        print(enemy.name, 'победил!')
 
 
-player = Player('Крушила', random.randint(50, 150), random.randint(5, 15), random.randint(1, 5))
-enemy = Enemy('Шустрик', random.randint(50, 150), random.randint(5, 15), random.randint(1, 5))
+player = Player()
+player.name = 'Крушила'
+player.health = random.randint(50, 150)
+player.damage = random.randint(5, 15)
+player.armor = random.randint(1, 5)
+
+enemy = Enemy()
+enemy.name = 'Шустрик'
+enemy.health = random.randint(50, 150)
+enemy.damage = random.randint(5, 15)
+enemy.armor = random.randint(1, 5)
 
 start_game()
