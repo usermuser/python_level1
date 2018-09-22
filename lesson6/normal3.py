@@ -41,13 +41,15 @@ class Enemy(Person):
 
 class Game():
 
-    def first_move(self):
-        print(random.randint(1,2))
+    def first_move(self, player1_name, player2_name):
+        tmp = [player1_name, player2_name]
+        return random.choice(tmp)
 
-    def start_game():
-        attacker = enemy
+    def start_game(self, player, enemy):
+        attacker = first_move()
         while player.health > 0 and enemy.health > 0:
-            if attacker == player:
+
+            if attacker == player.name:
                 player.attack(enemy)
                 attacker = enemy
             else:
@@ -63,5 +65,6 @@ class Game():
 player = Player('Крушила', random.randint(50, 150), random.randint(5, 15), random.randint(1, 5))
 enemy = Enemy('Шустрик', random.randint(50, 150), random.randint(5, 15), random.randint(1, 5))
 
-Game.first_move()
-# Game.start_game()
+new_game = Game()
+# print(new_game.first_move(player.name, enemy.name))
+new_game.start_game()
