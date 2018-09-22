@@ -100,7 +100,7 @@ class Animal(Base_Toy):
             self._create_cat()
 
     def _paint_cat(self):
-        print('Красим нашу кошку в белый цвет')
+        print('Красим нашу кошку в {}'.format(self.color))
 
     def _paint_dog(self):
         print('Красим нашу собаку в {}'.format(self.color))
