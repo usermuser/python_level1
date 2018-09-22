@@ -19,45 +19,49 @@ class Person():
         self.damage = damage
         self.armor = armor
 
+    def _calculate_damage(self, damage, armor):
+        return damage // armor
+
+    def attack(self, victim):
+        damage = self._calculate_damage(self.damage, victim.armor)
+        victim.health -= damage
+        print('{} нанес {} урона,'
+              ' у {} осталось {} жизней '.format(self.name, damage, victim.name, victim.health))
 
 class Player(Person):
+
     def battle_cry(self):
         return 'Boom shaka laka!'
 
 
 class Enemy(Person):
+
     def battle_cry(self):
         return 'Slamma jamma!'
 
+class Game():
 
-def calculate_damage(damage, armor):
-    return damage // armor
+    def first_move(self):
+        print(random.randint(1,2))
 
+    def start_game():
+        attacker = enemy
+        while player.health > 0 and enemy.health > 0:
+            if attacker == player:
+                player.attack(enemy)
+                attacker = enemy
+            else:
+                enemy.attack(player)
+                attacker = player
 
-def attack(attacker, victim):
-    damage = calculate_damage(attacker.damage, victim.armor)
-    victim.health -= damage
-    print('{} нанес {} урона,'
-          ' у {} осталось {} жизней '.format(attacker.name, damage, victim.name, victim.health))
-
-
-def start_game():
-    attacker = enemy
-    while player.health > 0 and enemy.health > 0:
-        if attacker == player:
-            attack(player, enemy)
-            attacker = enemy
+        if player.health > 0:
+            print(player.name, 'с криком {} победил!'.format(player.battle_cry()))
         else:
-            attack(enemy, player)
-            attacker = player
-
-    if player.health > 0:
-        print(player.name, 'с криком {} победил!'.format(player.battle_cry()))
-    else:
-        print(enemy.name, 'с криком {} победил!'.format(enemy.battle_cry()))
+            print(enemy.name, 'победил!')
 
 
 player = Player('Крушила', random.randint(50, 150), random.randint(5, 15), random.randint(1, 5))
 enemy = Enemy('Шустрик', random.randint(50, 150), random.randint(5, 15), random.randint(1, 5))
 
-start_game()
+Game.first_move()
+# Game.start_game()

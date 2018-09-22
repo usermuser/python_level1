@@ -37,7 +37,6 @@ class Player(Person):
 class Enemy(Person):
 
     def battle_cry(self):
-
         return 'Slamma jamma!'
 
 
