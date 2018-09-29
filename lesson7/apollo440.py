@@ -30,17 +30,35 @@ class Card(ThreeRowsCard):
         output = []
         for _ in range(self._rows_qty):
             output.append(self._create_line())
-        print(output)
+        # print(*output, sep='\n')
+        for i in output:
+            print(' '.join(str(i)[1:-1]))
         return output
 
 
 t = Card()
 player_card = t.create_card()
 
-class Player():
+class Person():
+    pass
+
+class Player(Person):
     def __init__(self):
         self.card = Card()
 
 
+class Cpu(Person):
+    def __init__(self):
+        self.card = Card()
+
+    def take_card(self):
+        self.card = Card()
+
+
+class Game():
+    pass
+
+
 player = Player()
-cpu = Player()
+cpu = Cpu()
+

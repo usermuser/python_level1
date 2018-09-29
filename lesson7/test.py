@@ -50,9 +50,9 @@ import random
 
 # print(a)
 
-print('=== ===')
-for i in range(3):
-    print(i)
+# print('=== ===')
+# for i in range(3):
+#     print(i)
 
 
 # def my_print(func):
@@ -72,3 +72,7 @@ for i in range(3):
 #     print(output)
 #
 #     return output
+
+
+lst = ['a', 'b', 'c']
+print(' '.join(lst))
