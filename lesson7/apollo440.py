@@ -10,7 +10,7 @@ class Card(ThreeRowsCard):
         super().__init__()
         # список случайных номеров для карточки
         self.nums_for_card = random.sample(range(1, 90), 15)
-        print(self.nums_for_card)
+        # print(self.nums_for_card)
 
     def _create_line(self):
         output_list = []
@@ -25,16 +25,22 @@ class Card(ThreeRowsCard):
             output_list.insert(random.randrange(len(output_list)), ' ')
         return output_list
 
+
     def create_card(self):
         output = []
-        print('----------------------------')
         for _ in range(self._rows_qty):
             output.append(self._create_line())
         print(output)
-        print('----------------------------')
         return output
 
 
 t = Card()
 player_card = t.create_card()
-# print(t.create_card())
+
+class Player():
+    def __init__(self):
+        self.card = Card()
+
+
+player = Player()
+cpu = Player()

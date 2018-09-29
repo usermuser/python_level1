@@ -53,3 +53,22 @@ import random
 print('=== ===')
 for i in range(3):
     print(i)
+
+
+# def my_print(func):
+#     def wrapper_my_print(*args, **kwargs):
+#         print('------ {} -----'.format('Ваша карточка'))
+#         value = func(*args, **kwargs)
+#         print('--------------------------')
+#         return value
+#     return wrapper_my_print
+#
+# @my_print
+# def create_card(self):
+#     output = []
+#
+#     for _ in range(self._rows_qty):
+#         output.append(self._create_line())
+#     print(output)
+#
+#     return output
