@@ -121,13 +121,12 @@ import random
 #         c = 0
 lst = [x for x in range(1,91)]
 
-def ff(lst):
+def generator(lst):
     while len(lst):
         a = lst.pop(random.randrange(len(lst)))
         yield a
 
-a = ff(lst)
+a = generator(lst)
 
-for i in range(10):
-    print(next(a))
-
+# print(next(a))
+print(next(generator(lst)))

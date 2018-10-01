@@ -69,13 +69,22 @@ class Cpu(Person):
             print(' '.join(i).rjust(line_len, ' '))
         print('--------------------------')
 
+class Bag():
+    def __init__(self):
+        self.barrels = [x for x in range(1, 91)]
+
+    def create_bag(self):
+        while len(self.barrels):
+            barrel = self.barrels.pop(random.randrange(len(self.barrels)))
+            yield barrel
+
+    def next_barrel(self):
+        return next(self.create_bag())
 
 class Game():
     def __init__(self, player, cpu):
         self.player = player
         self.cpu = cpu
-
-    def
 
     def start(self):
         pass
