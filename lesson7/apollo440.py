@@ -46,6 +46,9 @@ class Player(Person):
     def __init__(self):
         self.card = Card()
 
+    def show_card(self):
+        
+
 
 class Cpu(Person):
     def __init__(self):
