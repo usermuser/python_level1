@@ -88,50 +88,64 @@ class Game():
         self.player = player
         self.cpu = cpu
         self.bag = bag
+        self.exit = False
 
 
     def start(self):
-        exit = False
 
-        while not exit:
-            _barrel = bag.get_barrel()
+        while not self.exit:
+            _barrel = str(bag.get_barrel())
             print('Выпал бочонок', _barrel)
-            print(self.player._card)
+            # print(self.player._card)
 
             self.player.show_card()
             self.cpu.show_card()
 
             _answer = self.ask()
             barrel_in_card = self.check_ok(_barrel)
+            # print('_answer', _answer)
+            # print('barrel in card', barrel_in_card )
 
             if _answer and barrel_in_card:
-                # print(_answer, barrel_in_card)
-                self.player._card[self.player._card.index(_barrel)] = '-'
+                print('вызываем replce')
+                self.replace(_barrel)
 
             elif _answer and not barrel_in_card:
                 print('В твоей карточке нет такого номера!')
                 exit = True
 
+    def replace(self, _barrel):
+        for i in self.player._card:
+            # print('i = ', i)
+            # print('barrel = ', _barrel)
+            for j in range(len(i)):
+                # print(i[j])
+                if i[j] == _barrel:
+                    i[j] = '-'
+                    print('Заменили...')
+                    print(i)
+
 
     def check_ok(self, _barrel):
-        if _barrel in self.player._card:
-            return True
-        else:
-            return False
+        for sublist in self.player._card:
+            # print(sublist)
+            if _barrel in sublist:
+                return True
+
+        return False
 
     def ask(self):
-        ask_exit = False
-        while not ask_exit:
+        while not self.exit:
             answer = int(input('Что вы хотите сделать?\n'
-                           'Нажмите 1 если хотите зачеркнуть\n'
-                           'Нажмите 2 если хотите продолжить\n'
+                           'Нажмите 1 если хотите зачеркнуть: \n'
+                           'Нажмите 2 если хотите продолжить: \n'
                             'Нажмите 3 для выхода'))
             if answer == 3:
-                ask_exit = True
+                self.exit = True
             elif answer == 1:
-                return False
-            elif answer == 2:
                 return True
+            elif answer == 2:
+                return False
             else:
                 print('Вы ввели что-то не то')
 
