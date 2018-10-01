@@ -17,7 +17,7 @@ class Card(ThreeRowsCard):
         output_list = []
         for _ in range(self.nums_in_row):
             num = random.choice(self.nums_for_card)
-            output_list.append(num)
+            output_list.append(str(num))
             output_list.sort()
             self.nums_for_card.remove(num)
 
@@ -45,33 +45,44 @@ class Person():
 
 class Player(Person):
     def __init__(self):
-        self.card = Card().create_card()
-        self.card2 = copy.deepcopy(self.card)
-        print('Player instance')
-        print(self.card2)
+        self.card_init = Card().create_card()
+        self.card = copy.deepcopy(self.card_init)
+        self._card_name = '------ Ваша карточка -----'
+        # print('Player instance')
+        # print(self.card)
 
     def show_card(self):
-        print('= = = = = = YOUR CARD = = = = = = = = = = =')
-        for i in self.card2:
-            print(' '.join(str(i)))
+        print(self._card_name)
+        line_len = len(self._card_name)
+        for i in self.card:
+            print(' '.join(i).rjust(line_len, ' '))
             # print(i)
-        print('= = = = = = = = = = = = = = = = = = = = = =')
+        print('--------------------------')
 
 
 
 class Cpu(Person):
     def __init__(self):
-        self.card = Card()
+        self.card_init = Card().create_card()
+        self.card = copy.deepcopy(self.card_init)
+        self._card_name = '-- Карточка компьютера ---'
+        print('Cpu instance')
+        
 
-    def take_card(self):
-        self.card = Card()
-
+    def show_card(self):
+        print(self._card_name)
+        line_len = len(self._card_name)
+        for i in self.card:
+            print(' '.join(i).rjust(line_len, ' '))
+            # print(i)
+        print('--------------------------')
 
 class Game():
     pass
 
-print('startt')
+print('start\n')
 player = Player()
-# print(player.show_card())
-# cpu = Cpu()
+player.show_card()
+cpu = Cpu()
+cpu.show_card()
 
