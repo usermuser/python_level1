@@ -100,12 +100,13 @@ import random
 # prettify_card(lst4)
 # print('++')
 #
-# def sum_lists(lst):
-#     print('another way to concatenate lists')
-#     result = sum([lst[0]+lst[1]+lst[2]], [])
-#     # print('my_sum = ', ' '.join(result))
-#     return result
-# print(sum_lists(lst4))
+def sum_lists(lst):
+    print('another way to concatenate lists')
+    result = sum([lst[0]+lst[1]+lst[2]], [])
+    # print('my_sum = ', ' '.join(result))
+    return result
+
+print(sum_lists(lst4))
 
 
 # c = [1]

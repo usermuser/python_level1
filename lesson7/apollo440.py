@@ -12,7 +12,7 @@ class Card(ThreeRowsCard):
     def __init__(self):
         super().__init__()
         # список случайных номеров для карточки
-        self.nums_for_card = random.sample(range(1, 90), 15)
+        self.nums_for_card = random.sample(range(1, 16), 15)
         # print(self.nums_for_card)
 
     def _create_line(self):
@@ -72,7 +72,7 @@ class Cpu(Person):
 
 class Bag():
     def __init__(self):
-        self._barrels = [x for x in range(1, 91)]
+        self._barrels = [x for x in range(1, 18)]
 
     def _bag(self):
         while len(self._barrels):
@@ -96,6 +96,7 @@ class Game():
         while not exit:
             _barrel = bag.get_barrel()
             print('Выпал бочонок', _barrel)
+            print(self.player._card)
 
             self.player.show_card()
             self.cpu.show_card()
@@ -104,15 +105,12 @@ class Game():
             barrel_in_card = self.check_ok(_barrel)
 
             if _answer and barrel_in_card:
+                # print(_answer, barrel_in_card)
                 self.player._card[self.player._card.index(_barrel)] = '-'
 
             elif _answer and not barrel_in_card:
                 print('В твоей карточке нет такого номера!')
                 exit = True
-
-
-
-
 
 
     def check_ok(self, _barrel):
@@ -131,9 +129,9 @@ class Game():
             if answer == 3:
                 ask_exit = True
             elif answer == 1:
-                return True
-            elif answer == 2:
                 return False
+            elif answer == 2:
+                return True
             else:
                 print('Вы ввели что-то не то')
 
