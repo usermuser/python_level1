@@ -1,4 +1,5 @@
 import random
+import copy
 
 class ThreeRowsCard():
     def __init__(self, nums_in_row=5):
@@ -31,23 +32,31 @@ class Card(ThreeRowsCard):
         for _ in range(self._rows_qty):
             output.append(self._create_line())
         # print(*output, sep='\n')
-        for i in output:
-            print(' '.join(str(i)[1:-1]))
+        # for i in output:
+        #     print(' '.join(str(i)[1:-1]))
         return output
 
 
-t = Card()
-player_card = t.create_card()
+# t = Card()
+# player_card = t.create_card()
 
 class Person():
     pass
 
 class Player(Person):
     def __init__(self):
-        self.card = Card()
+        self.card = Card().create_card()
+        self.card2 = copy.deepcopy(self.card)
+        print('Player instance')
+        print(self.card2)
 
     def show_card(self):
-        
+        print('= = = = = = YOUR CARD = = = = = = = = = = =')
+        for i in self.card2:
+            print(' '.join(str(i)))
+            # print(i)
+        print('= = = = = = = = = = = = = = = = = = = = = =')
+
 
 
 class Cpu(Person):
@@ -61,7 +70,8 @@ class Cpu(Person):
 class Game():
     pass
 
-
+print('startt')
 player = Player()
-cpu = Cpu()
+# print(player.show_card())
+# cpu = Cpu()
 

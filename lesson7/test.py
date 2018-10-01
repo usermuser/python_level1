@@ -78,21 +78,38 @@ lst1 = ['1', '52', ' ', '88', ' ']
 lst2 = ['22', ' ', '33', ' ', '66']
 lst3 = [' ', '45', '75', ' ', '85']
 lst4 = [lst1, lst2, lst3]
-print(lst4)
+print('lst4 = ', lst4)
 # print(' '.join(lst3))
 
+# pass this
 lst5 = []
-c = 0
 for i in lst4:
     for j in i:
         lst5.append(j)
-
 print(' '.join(lst5))
+########################
 
-print('=======start========')
-for i in lst4:
-    print(' '.join(i))
-print('=======end==========')
+def prettify_card(some_list):
+    print('=======start========')
+    for i in some_list:
+        print(' '.join(i))
+    print('=======end==========')
+    return some_list
+
+print('++')
+prettify_card(lst4)
+print('++')
+
+def sum_lists(lst):
+    print('another way to concatenate lists')
+    result = sum([lst[0]+lst[1]+lst[2]], [])
+    # print('my_sum = ', ' '.join(result))
+    return result
+print(sum_lists(lst4))
+
+
+
+
 
 # print(lst5)
 # c = 0
