@@ -74,42 +74,42 @@ import random
 #     return output
 
 
-lst1 = ['1', '52', ' ', '88', ' ']
-lst2 = ['22', ' ', '33', ' ', '66']
-lst3 = [' ', '45', '75', ' ', '85']
-lst4 = [lst1, lst2, lst3]
-print('lst4 = ', lst4)
-# print(' '.join(lst3))
-
-# pass this
-lst5 = []
-for i in lst4:
-    for j in i:
-        lst5.append(j)
-print(' '.join(lst5))
-########################
-
-def prettify_card(some_list):
-    print('=======start========')
-    for i in some_list:
-        print(' '.join(i))
-    print('=======end==========')
-    return some_list
-
-print('++')
-prettify_card(lst4)
-print('++')
-
-def sum_lists(lst):
-    print('another way to concatenate lists')
-    result = sum([lst[0]+lst[1]+lst[2]], [])
-    # print('my_sum = ', ' '.join(result))
-    return result
-print(sum_lists(lst4))
-
-
+# lst1 = ['1', '52', ' ', '88', ' ']
+# lst2 = ['22', ' ', '33', ' ', '66']
+# lst3 = [' ', '45', '75', ' ', '85']
+# lst4 = [lst1, lst2, lst3]
+# print('lst4 = ', lst4)
+# # print(' '.join(lst3))
+#
+# # pass this
+# lst5 = []
+# for i in lst4:
+#     for j in i:
+#         lst5.append(j)
+# print(' '.join(lst5))
+# ########################
+#
+# def prettify_card(some_list):
+#     print('=======start========')
+#     for i in some_list:
+#         print(' '.join(i))
+#     print('=======end==========')
+#     return some_list
+#
+# print('++')
+# prettify_card(lst4)
+# print('++')
+#
+# def sum_lists(lst):
+#     print('another way to concatenate lists')
+#     result = sum([lst[0]+lst[1]+lst[2]], [])
+#     # print('my_sum = ', ' '.join(result))
+#     return result
+# print(sum_lists(lst4))
 
 
+# c = [1]
+# print(True == len(c))
 
 # print(lst5)
 # c = 0
@@ -119,3 +119,15 @@ print(sum_lists(lst4))
 #     if c == 9:
 #         print('z\n')
 #         c = 0
+lst = [x for x in range(1,91)]
+
+def ff(lst):
+    while len(lst):
+        a = lst.pop(random.randrange(len(lst)))
+        yield a
+
+a = ff(lst)
+
+for i in range(10):
+    print(next(a))
+
