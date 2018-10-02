@@ -101,17 +101,24 @@ class Game():
 
             self.player.show_card()
             self.cpu.show_card()
-            # self._player_choice()
-            # self.barrel_in_card()
             self.win_lose_condition()
 
+            print('\n\n Поищем эту цифру в карточке компьютера')
+            self.process_cpu_card()
+
+    def process_cpu_card(self):
+        if self.barrel_in_card(self.cpu._card):
+            print('\nБочонок с номером {} есть в карточке компьютера, заменим'.format(self._barrel))
+            self.replace(self.cpu._card)
+            print('\nЗаменили')
+
     def win_lose_condition(self):
-        barrel_in_card = self.barrel_in_card()
+        barrel_in_card = self.barrel_in_card(self.player._card)
         player_choice = self._player_choice()
 
         if player_choice and barrel_in_card:
             print('вызываем replace')
-            self.replace()
+            self.replace(self.player._card)
 
         elif player_choice and not barrel_in_card:
             print('В твоей карточке нет такого номера!'
@@ -120,24 +127,26 @@ class Game():
 
         elif not player_choice and barrel_in_card:
             print('Игрок ошибся и выбрал продолжить. Поражение!')
-            self.exit = True
+            # self.exit = True
+            return
 
         elif not player_choice and not barrel_in_card:
             print('Игрок выбрал продолжить, берем следующий бочонок\n')
 
 
-    def replace(self):
-        for i in self.player._card:
+    def replace(self, card):
+        for i in card:
             for j in range(len(i)):
                 if i[j] == self._barrel:
                     i[j] = '-'
                     print('Заменили...\n')
 
-    def barrel_in_card(self):
-        for sublist in self.player._card:
+    def barrel_in_card(self, card):
+        for sublist in card:
             if self._barrel in sublist:
                 return True
         return False
+
 
     def _player_choice(self):
         while not self.exit:
