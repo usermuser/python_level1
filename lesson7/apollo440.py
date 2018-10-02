@@ -101,6 +101,7 @@ class Game():
     def check_winner(self):
         pass
 
+
     def mark_num_in_cpu_card(self):
         if self.barrel_in_card(self.cpu._card):
             print('\nБочонок с номером {} есть в карточке компьютера, заменим'.format(self._barrel))
