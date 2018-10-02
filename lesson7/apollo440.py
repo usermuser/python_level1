@@ -101,16 +101,16 @@ class Game():
 
             self.player.show_card()
             self.cpu.show_card()
+            print('\n Поищем эту цифру в карточке компьютера')
+            self.process_cpu_card()
             self.win_lose_condition()
 
-            print('\n\n Поищем эту цифру в карточке компьютера')
-            self.process_cpu_card()
+
 
     def process_cpu_card(self):
         if self.barrel_in_card(self.cpu._card):
             print('\nБочонок с номером {} есть в карточке компьютера, заменим'.format(self._barrel))
             self.replace(self.cpu._card)
-            print('\nЗаменили')
 
     def win_lose_condition(self):
         barrel_in_card = self.barrel_in_card(self.player._card)
@@ -127,8 +127,7 @@ class Game():
 
         elif not player_choice and barrel_in_card:
             print('Игрок ошибся и выбрал продолжить. Поражение!')
-            # self.exit = True
-            return
+            self.exit = True
 
         elif not player_choice and not barrel_in_card:
             print('Игрок выбрал продолжить, берем следующий бочонок\n')
