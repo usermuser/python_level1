@@ -97,9 +97,19 @@ class Game():
             print('\nПоищем эту цифру в карточке компьютера')
             self.mark_num_in_cpu_card()
             self.process_user_choice()
+            if self.check_winner():
+                break
 
     def check_winner(self):
-        pass
+        if self.check_card_for_win(self.player._card):
+            print('Игрок победил')
+            return True
+        elif self.check_card_for_win(self.cpu._card):
+            print('Компьютер победил')
+            return True
+        else:
+            return False
+
 
 
     def mark_num_in_cpu_card(self):
