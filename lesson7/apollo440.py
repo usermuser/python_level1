@@ -102,17 +102,26 @@ class Game():
             self.cpu.show_card()
 
             _answer = self.ask()
-            barrel_in_card = self.check_ok(_barrel)
-            # print('_answer', _answer)
-            # print('barrel in card', barrel_in_card )
+            _barrel_in_card = self.check_card(_barrel)
+            self.win_lose_condition(_answer, _barrel_in_card, _barrel)
 
-            if _answer and barrel_in_card:
-                print('вызываем replce')
-                self.replace(_barrel)
+    def win_lose_condition(self, _answer, _barrel_in_card, _barrel):
+        if _answer and _barrel_in_card:
+            print('вызываем replce')
+            self.replace(_barrel)
 
-            elif _answer and not barrel_in_card:
-                print('В твоей карточке нет такого номера!')
-                exit = True
+        elif _answer and not _barrel_in_card:
+            print('В твоей карточке нет такого номера!'
+                  'Игрок проиграл!')
+            self.exit = True
+
+        elif not _answer and _barrel_in_card:
+            print('Игрок ошибся и выбрал продолжить. Поражение!')
+            self.exit = True
+
+        elif not _answer and not _barrel_in_card:
+            print('Игрок выбрал продолжить, берем следующий бочонок')
+
 
     def replace(self, _barrel):
         for i in self.player._card:
@@ -126,7 +135,7 @@ class Game():
                     print(i)
 
 
-    def check_ok(self, _barrel):
+    def check_card(self, _barrel):
         for sublist in self.player._card:
             # print(sublist)
             if _barrel in sublist:
@@ -141,6 +150,7 @@ class Game():
                            'Нажмите 2 если хотите продолжить: \n'
                             'Нажмите 3 для выхода'))
             if answer == 3:
+                print('До свидания!')
                 self.exit = True
             elif answer == 1:
                 return True
@@ -151,7 +161,9 @@ class Game():
 
 
 
-
+# добавить условия победы
+# добавить зачеркивания у компьютера
+# добавить условия проигрыша
 
 
 
