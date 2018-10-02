@@ -95,17 +95,18 @@ class Game():
             self.player.show_card()
             self.cpu.show_card()
             print('\nПоищем эту цифру в карточке компьютера')
-            self.process_cpu_card()
-            self.win_lose_condition()
+            self.mark_num_in_cpu_card()
+            self.process_user_choice()
 
+    def check_winner(self):
+        pass
 
-
-    def process_cpu_card(self):
+    def mark_num_in_cpu_card(self):
         if self.barrel_in_card(self.cpu._card):
             print('\nБочонок с номером {} есть в карточке компьютера, заменим'.format(self._barrel))
             self.replace(self.cpu._card)
 
-    def win_lose_condition(self):
+    def process_user_choice(self):
         barrel_in_card = self.barrel_in_card(self.player._card)
         player_choice = self._player_choice()
 
@@ -125,12 +126,22 @@ class Game():
         elif not player_choice and not barrel_in_card:
             print('Игрок выбрал продолжить, берем следующий бочонок\n')
 
+    def check_card_for_win(self, card):
+        tmp_counter = 0
+        for line in card:
+            for j in range(len(line)):
+                if line[j] == '-':
+                    tmp_counter += 1
+                if tmp_counter == 5:
+                    return True
+            tmp_counter = 0
+        return False
 
     def replace(self, card):
-        for i in card:
-            for j in range(len(i)):
-                if i[j] == self._barrel:
-                    i[j] = '-'
+        for line in card:
+            for j in range(len(line)):
+                if line[j] == self._barrel:
+                    line[j] = '-'
                     print('Заменили...\n')
 
     def barrel_in_card(self, card):
@@ -155,13 +166,6 @@ class Game():
                 return False
             else:
                 print('Вы ввели что-то не то')
-
-
-
-# добавить зачеркивания у компьютера
-# добавить условия проигрыша
-# добавить проверку карточки на выйгрыш
-
 
 
 if __name__ == '__main__':
