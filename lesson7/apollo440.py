@@ -84,71 +84,67 @@ class Bag():
 
 
 class Game():
+
     def __init__(self, player, cpu, bag):
         self.player = player
         self.cpu = cpu
         self.bag = bag
         self.exit = False
+        self._barrel = ''
 
 
     def start(self):
 
         while not self.exit:
-            _barrel = str(bag.get_barrel())
-            print('Выпал бочонок', _barrel)
-            # print(self.player._card)
+            self._barrel = str(bag.get_barrel())
+            print('\nВыпал бочонок', self._barrel)
 
             self.player.show_card()
             self.cpu.show_card()
+            # self._player_choice()
+            # self.barrel_in_card()
+            self.win_lose_condition()
 
-            _answer = self.ask()
-            _barrel_in_card = self.check_card(_barrel)
-            self.win_lose_condition(_answer, _barrel_in_card, _barrel)
+    def win_lose_condition(self):
+        barrel_in_card = self.barrel_in_card()
+        player_choice = self._player_choice()
 
-    def win_lose_condition(self, _answer, _barrel_in_card, _barrel):
-        if _answer and _barrel_in_card:
-            print('вызываем replce')
-            self.replace(_barrel)
+        if player_choice and barrel_in_card:
+            print('вызываем replace')
+            self.replace()
 
-        elif _answer and not _barrel_in_card:
+        elif player_choice and not barrel_in_card:
             print('В твоей карточке нет такого номера!'
                   'Игрок проиграл!')
             self.exit = True
 
-        elif not _answer and _barrel_in_card:
+        elif not player_choice and barrel_in_card:
             print('Игрок ошибся и выбрал продолжить. Поражение!')
             self.exit = True
 
-        elif not _answer and not _barrel_in_card:
-            print('Игрок выбрал продолжить, берем следующий бочонок')
+        elif not player_choice and not barrel_in_card:
+            print('Игрок выбрал продолжить, берем следующий бочонок\n')
 
 
-    def replace(self, _barrel):
+    def replace(self):
         for i in self.player._card:
-            # print('i = ', i)
-            # print('barrel = ', _barrel)
             for j in range(len(i)):
-                # print(i[j])
-                if i[j] == _barrel:
+                if i[j] == self._barrel:
                     i[j] = '-'
-                    print('Заменили...')
-                    print(i)
+                    print('Заменили...\n')
 
-
-    def check_card(self, _barrel):
+    def barrel_in_card(self):
         for sublist in self.player._card:
-            # print(sublist)
-            if _barrel in sublist:
+            if self._barrel in sublist:
                 return True
-
         return False
 
-    def ask(self):
+    def _player_choice(self):
         while not self.exit:
             answer = int(input('Что вы хотите сделать?\n'
-                           'Нажмите 1 если хотите зачеркнуть: \n'
-                           'Нажмите 2 если хотите продолжить: \n'
-                            'Нажмите 3 для выхода'))
+                           'Нажмите 1 если хотите зачеркнуть. \n'
+                           'Нажмите 2 если хотите продолжит. \n'
+                            'Нажмите 3 для выхода:'))
             if answer == 3:
                 print('До свидания!')
                 self.exit = True
@@ -161,9 +157,9 @@ class Game():
 
 
 
-# добавить условия победы
 # добавить зачеркивания у компьютера
 # добавить условия проигрыша
+# добавить проверку карточки на выйгрыш
 
 
 
@@ -172,11 +168,6 @@ if __name__ == '__main__':
     player = Player()
     cpu = Cpu()
     bag = Bag()
-
-    # player.show_card()
-    # cpu.show_card()
-
-
 
     game = Game(player, cpu, bag)
     game.start()
