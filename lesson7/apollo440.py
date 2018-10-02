@@ -1,5 +1,4 @@
 import random
-import copy
 
 
 class ThreeRowsCard():
@@ -13,7 +12,6 @@ class Card(ThreeRowsCard):
         super().__init__()
         # список случайных номеров для карточки
         self.nums_for_card = random.sample(range(1, 16), 15)
-        # print(self.nums_for_card)
 
     def _create_line(self):
         output_list = []
@@ -42,10 +40,7 @@ class Person():
 class Player(Person):
     def __init__(self):
         self._card = Card().create_card()
-        # self.card = copy.deepcopy(self.card_init)
         self._card_name = '------ Ваша карточка -----'
-        # print('Player instance')
-        # print(self.card)
 
     def show_card(self):
         print(self._card_name)
@@ -58,9 +53,7 @@ class Player(Person):
 class Cpu(Person):
     def __init__(self):
         self._card = Card().create_card()
-        # self.card = copy.deepcopy(self.card_init)
         self._card_name = '-- Карточка компьютера ---'
-        # print('Cpu instance')
 
     def show_card(self):
         print(self._card_name)
@@ -101,7 +94,7 @@ class Game():
 
             self.player.show_card()
             self.cpu.show_card()
-            print('\n Поищем эту цифру в карточке компьютера')
+            print('\nПоищем эту цифру в карточке компьютера')
             self.process_cpu_card()
             self.win_lose_condition()
 
