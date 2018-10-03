@@ -1,21 +1,22 @@
 import random
 
-
 class ThreeRowsCard():
     def __init__(self, nums_in_row=5):
-        self._rows_qty = 3
-        self.nums_in_row = nums_in_row
+        self._ROWS_QTY = 3          # rows quantity
+        self._NUMS_IN_ROW = nums_in_row
+        self._NUMS_RANGE = 90
+        self._NUMS_IN_CARD = 15
 
 
 class Card(ThreeRowsCard):
     def __init__(self):
         super().__init__()
         # список случайных номеров для карточки
-        self.nums_for_card = random.sample(range(1, 16), 15)
+        self.nums_for_card = random.sample(range(1, self._NUMS_RANGE+1), self._NUMS_RANGE)
 
     def _create_line(self):
         output_list = []
-        for _ in range(self.nums_in_row):
+        for _ in range(self._NUMS_IN_ROW):
             num = random.choice(self.nums_for_card)
             output_list.append(str(num))
             output_list.sort()
@@ -28,7 +29,7 @@ class Card(ThreeRowsCard):
 
     def create_card(self):
         output = []
-        for _ in range(self._rows_qty):
+        for _ in range(self._ROWS_QTY):
             output.append(self._create_line())
         return output
 
@@ -65,7 +66,8 @@ class Cpu(Person):
 
 class Bag():
     def __init__(self):
-        self._barrels = [x for x in range(1, 18)]
+        self.BARRELS_IN_BAG = 91
+        self._barrels = [x for x in range(1, self.BARRELS_IN_BAG)]
 
     def _bag(self):
         while len(self._barrels):
@@ -84,6 +86,7 @@ class Game():
         self.bag = bag
         self.exit = False
         self._barrel = ''
+        self._NUMS_TO_WIN = 15
 
 
     def start(self):
@@ -118,23 +121,23 @@ class Game():
             self.replace(self.cpu._card)
 
     def process_user_choice(self):
-        barrel_in_card = self.barrel_in_card(self.player._card)
+        is_barrel_in_card = self.barrel_in_card(self.player._card)
         player_choice = self._player_choice()
 
-        if player_choice and barrel_in_card:
+        if player_choice and is_barrel_in_card:
             print('вызываем replace')
             self.replace(self.player._card)
 
-        elif player_choice and not barrel_in_card:
+        elif player_choice and not is_barrel_in_card:
             print('В твоей карточке нет такого номера!'
                   'Игрок проиграл!')
             self.exit = True
 
-        elif not player_choice and barrel_in_card:
+        elif not player_choice and is_barrel_in_card:
             print('Игрок ошибся и выбрал продолжить. Поражение!')
             self.exit = True
 
-        elif not player_choice and not barrel_in_card:
+        elif not player_choice and not is_barrel_in_card:
             print('Игрок выбрал продолжить, берем следующий бочонок\n')
 
     def check_card_for_win(self, card):
@@ -143,9 +146,8 @@ class Game():
             for j in range(len(line)):
                 if line[j] == '-':
                     tmp_counter += 1
-                if tmp_counter == 5:
+                if tmp_counter == self._NUMS_TO_WIN:
                     return True
-            tmp_counter = 0
         return False
 
     def replace(self, card):
