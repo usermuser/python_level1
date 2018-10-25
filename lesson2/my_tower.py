@@ -27,3 +27,20 @@
 #
 # Вход: 11
 # Выход: 5 3
+
+def t(target):
+    floors_dict = {}
+    floor_num = 1
+    room_num = 1
+    counter = 1
+    while counter < 11:
+        for i in range(counter):
+            rooms_list = []
+            for j in range(counter):
+                rooms_list.append(room_num)
+                room_num+=1
+            floors_dict[floor_num] = rooms_list
+            floor_num+=1
+        counter+=1
+    return floors_dict
+
