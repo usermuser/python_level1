@@ -1,4 +1,6 @@
-import psutil
+# https://vimeo.com/286737877/0868d65a32
+# python3 -m cProfile -s time my_tower.py 1
+
 # Задание-3: "Перевёрнутая башня" (Задача олимпиадного уровня)
 #
 # Вавилонцы решили построить удивительную башню —
@@ -29,20 +31,26 @@ import psutil
 # Вход: 11
 # Выход: 5 3
 
-def t(target=100000):
+#100000000 = 17.7
+#10000000 = 1.7
+
+def t(target=100000000):
     floors_dict = {}
     floor_num = 1
     room_num = 1
     counter = 1
     while True:
         for i in range(counter):
-            rooms_list = []
+            # rooms_list = []
+            rooms_set = set()
             for j in range(counter):
-                rooms_list.append(room_num)
+                # rooms_list.append(room_num)
+                rooms_set |={room_num}
                 room_num+=1
-            # floors_dict[floor_num] = rooms_list
-            if target in rooms_list:
+            if target in rooms_set:
+                rooms_list = list(rooms_set)
                 return floor_num, rooms_list.index(target)+1
+            # floors_dict[floor_num] = rooms_list
             floor_num+=1
         counter+=1
     return floors_dict
