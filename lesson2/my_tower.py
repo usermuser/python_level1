@@ -1,3 +1,4 @@
+import psutil
 # Задание-3: "Перевёрнутая башня" (Задача олимпиадного уровня)
 #
 # Вавилонцы решили построить удивительную башню —
@@ -28,19 +29,22 @@
 # Вход: 11
 # Выход: 5 3
 
-def t(target):
+def t(target=100000):
     floors_dict = {}
     floor_num = 1
     room_num = 1
     counter = 1
-    while counter < 11:
+    while True:
         for i in range(counter):
             rooms_list = []
             for j in range(counter):
                 rooms_list.append(room_num)
                 room_num+=1
-            floors_dict[floor_num] = rooms_list
+            # floors_dict[floor_num] = rooms_list
+            if target in rooms_list:
+                return floor_num, rooms_list.index(target)+1
             floor_num+=1
         counter+=1
     return floors_dict
 
+print(t())
